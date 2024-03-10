@@ -28,7 +28,6 @@ export interface IOrderResult {
   total: number;
 }
 
-export interface IContacts {
-  email: string;
-  phone: string;
+export interface ISuccess {
+  total: number;
 }
