@@ -62,7 +62,6 @@ events.on('items:change', (items: IProduct[]) => {
 });
 
 events.on('preview:change', (item: IProduct) => {
-	console.log(item);
 	const card = new Card(cloneTemplate(cardPreviewTemplate), {
 		onClick: () => {
 			if (appData.inBasket(item)) {

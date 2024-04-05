@@ -63,8 +63,6 @@ export class AppData {
 			this.order[field] = value;
 		}
 
-		console.log(this.order);
-
 		if (this.order.payment && this.validateOrder()) {
 			this.order.total = this.basket.total;
 			this.order.items = this.basket.items;
