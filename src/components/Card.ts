@@ -1,18 +1,17 @@
 import { Component } from './base/Component';
 import { IProduct } from '../types';
 import { ensureElement } from '../utils/utils';
+import { categoryColor } from '../utils/constants';
+
+categoryColor.set('софт-скил', '_soft');
+categoryColor.set('другое', '_other');
+categoryColor.set('дополнительное', '_additional');
+categoryColor.set('кнопка', '_button');
+categoryColor.set('хард-скил', '_hard');
 
 interface ICardActions {
 	onClick: (event: MouseEvent) => void;
 }
-
-const categoryColor = new Map<string, string>();
-
-categoryColor.set('софт-скил', '#83FA9D');
-categoryColor.set('другое', '#FAD883');
-categoryColor.set('дополнительное', '#B783FA');
-categoryColor.set('кнопка', '#83DDFA');
-categoryColor.set('хард-скил', '#FAA083');
 
 export class Card extends Component<IProduct> {
 	protected _title: HTMLElement;
@@ -65,7 +64,7 @@ export class Card extends Component<IProduct> {
 		if (value) {
 			this.setText(this._price, `${value} синапсов`);
 		} else {
-			this.setText(this._price, value);
+			this.setText(this._price, 'Бесценно');
 		}
 		if (this._button) {
 			this._button.disabled = !value;
@@ -79,9 +78,13 @@ export class Card extends Component<IProduct> {
 	set category(value: string) {
 		this.setText(this._category, value);
 		if (this._category) {
-			this._category.style['backgroundColor'] = categoryColor.get(
-				this._category.textContent
-			);
+			if (categoryColor.has(this._category.textContent)) {
+				this._category.classList.add(
+					`card__category${categoryColor.get(this._category.textContent)}`
+				);
+			} else {
+				this._category.classList.add(`card__category_default`);
+			}
 		}
 	}
 

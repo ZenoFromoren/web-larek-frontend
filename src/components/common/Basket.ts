@@ -14,6 +14,7 @@ export class Basket extends View<IBasketView> {
 	protected _list: HTMLElement;
 	protected _total: HTMLElement;
 	protected _button: HTMLElement;
+	protected _ordinalNumber?: HTMLElement;
 
 	constructor(protected events: EventEmitter, container: HTMLElement) {
 		super(events, cloneTemplate(Basket.template));
@@ -34,6 +35,7 @@ export class Basket extends View<IBasketView> {
 	set items(items: HTMLElement[]) {
 		if (items.length) {
 			this._list.replaceChildren(...items);
+			items.forEach((item, index) => item.querySelector(`.basket__item-index`).textContent = String(index + 1))
 			this.setDisabled(this._button, false);
 		} else {
 			this._list.replaceChildren(

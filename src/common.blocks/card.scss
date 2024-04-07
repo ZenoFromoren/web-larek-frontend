@@ -1,6 +1,13 @@
 @use "variables" as *;
 @use "mixins";
 
+$category1: #83FA9D;
+$category2: #FAD883;
+$category3: #B783FA;
+$category4: #83DDFA;
+$category5: #FAA083;
+$category6: #FFF;
+
 .card {
   @include mixins.flex(column);
   border: 0;
@@ -75,6 +82,9 @@
     }
     &_button {
       background-color: $category4;
+    }
+    &_default {
+      background-color: $category6;
     }
   }
   &__action {

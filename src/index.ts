@@ -35,8 +35,6 @@ const contactsForm = new Contacts(events, cloneTemplate(contactsTemplate));
 const successForm = new Success(cloneTemplate(successTemplate), {
 	onClick: () => {
 		modal.close();
-		appData.clearBasket();
-		events.emit('basket:change');
 	},
 });
 
@@ -46,6 +44,14 @@ events.on('modal:open', () => {
 
 events.on('modal:close', () => {
 	page.locked = false;
+	appData.order = {
+		email: '',
+		phone: '',
+		address: '',
+		payment: 'card',
+		total: 0,
+		items: [],
+	};
 });
 
 events.on('card:select', (item: IProduct) => {
@@ -125,6 +131,9 @@ events.on('order:ready', () => {
 			total: appData.basket.total,
 		}),
 	});
+
+	appData.clearBasket();
+	events.emit('basket:change');
 });
 
 events.on(

@@ -14,6 +14,7 @@ export class Order extends Form<OrderForm> {
 			'.button_alt[name=card]',
 			this.container
 		);
+
 		this._paymentCash = ensureElement<HTMLButtonElement>(
 			'.button_alt[name=cash]',
 			this.container
