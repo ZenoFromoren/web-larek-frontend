@@ -84,8 +84,6 @@ export class AppData {
 			errors.address = 'Необходимо указать адрес';
 		}
 
-		console.log(this.formErrors);
-
 		this.formErrors = errors;
 		this.events.emit('formErrors:change', this.formErrors);
 		return Object.keys(errors).length === 0;
